@@ -6,7 +6,7 @@
 | `start_date` | Not required (and, actually, substituted with today) in case if `end_date` absents.      | Date in yyyy-MM-dd format. No earlier than 7 days before `end_date` and today.|
 | `end_date`   | Not required (and, actually, substituted with today) in case if `start_date` absents.  | Date in yyyy-MM-dd format. No later than 7 days after `start_date`.  |
 
-_*Example:*_ `http://localhost:8082/weather?start_date=2020-12-06&end_date=2020-12-08&city=Dublin`
+_*Example:*_ `http://localhost:8080/weather?start_date=2020-12-06&end_date=2020-12-08&city=Dublin`
 ```
 {
   "weather" : [ {
@@ -32,7 +32,7 @@ _*Example:*_ `http://localhost:8082/weather?start_date=2020-12-06&end_date=2020-
 | `start_date`    | Not required (and, actually, substituted with today) in case if `end_date` absents. | Date in yyyy-MM-dd format. |
 | `end_date` | Not required (and, actually, substituted with today) in case if `start_date` absents. | Date in yyyy-MM-dd format. |
 
-_*Example:*_ `http://localhost:8081/currency?start_date=2020-11-01&end_date=2020-11-10`
+_*Example:*_ `http://localhost:8080/currency?start_date=2020-11-01&end_date=2020-11-10`
 ```
 {
   "currency" : [ {
@@ -61,7 +61,7 @@ _*Example:*_ `http://localhost:8081/currency?start_date=2020-11-01&end_date=2020
 
 **Predict API**
 
-_*Example:*_ `http://localhost:8083/prediction`
+_*Example:*_ `http://localhost:8080/prediction`
 ```
 {
   "prediction" : 75.41535013579576

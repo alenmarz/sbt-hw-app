@@ -1,4 +1,4 @@
-package ru.sbt.pdrisapp.currency.service;
+package ru.sbt.pdrisapp;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
