@@ -16,6 +16,8 @@ public class CurrencyAdapter {
         List<CurrencyEntity> currencyEntities = new ArrayList<>();
 
         List<Record> records = currencyList.getRecords();
+        if (records == null || records.size() == 0) return currencyEntities;
+
         for (Record record: records) {
             Date date = new SimpleDateFormat("dd.MM.yyyy").parse(record.getDate());
             currencyEntities.add(new CurrencyEntity(record.getValue(), date));
