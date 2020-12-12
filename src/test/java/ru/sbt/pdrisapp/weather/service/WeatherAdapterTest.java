@@ -1,5 +1,6 @@
 package ru.sbt.pdrisapp.weather.service;
 import junit.framework.TestCase;
+import org.junit.Test;
 import ru.sbt.pdrisapp.weather.model.db.WeatherEntity;
 import ru.sbt.pdrisapp.weather.model.wheatherapi.*;
 
@@ -9,6 +10,7 @@ import java.util.List;
 
 public class WeatherAdapterTest extends TestCase {
 
+    @Test
     public void testGetWeatherEntities() {
         Location location = new Location("Dublin");
         Date date = new Date();
