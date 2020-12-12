@@ -16,6 +16,9 @@ public class Record {
     @JacksonXmlProperty(localName = "Value")
     private double value;
 
+    public Record() {
+    }
+
     public String getDate() {
         return date;
     }

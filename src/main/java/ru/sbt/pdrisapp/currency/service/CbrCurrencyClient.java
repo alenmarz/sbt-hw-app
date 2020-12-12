@@ -37,7 +37,7 @@ public class CbrCurrencyClient {
             startDateString = endDateString = defaultFormatter.format(new Date());
         }
 
-        if (code.isEmpty()) {
+        if (code == null || code.isEmpty()) {
             code = DefaultCurrencyCode;
         }
 
