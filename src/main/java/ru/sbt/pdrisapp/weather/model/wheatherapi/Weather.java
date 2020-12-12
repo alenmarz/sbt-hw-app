@@ -37,12 +37,4 @@ public class Weather {
         this.location = location;
     }
 
-    @Override
-    public String toString() {
-        return "Weather{" +
-                "location=" + location +
-                ", current=" + current +
-                ", forecast=" + forecast +
-                '}';
-    }
 }

@@ -17,10 +17,4 @@ public class Current {
         this.temp_c = temp_c;
     }
 
-    @Override
-    public String toString() {
-        return "Current{" +
-                "temp_c=" + temp_c +
-                '}';
-    }
 }

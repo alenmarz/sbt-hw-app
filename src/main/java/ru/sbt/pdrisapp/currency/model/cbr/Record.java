@@ -53,13 +53,4 @@ public class Record {
         this.value = number.doubleValue();
     }
 
-    @Override
-    public String toString() {
-        return "Record{" +
-                "date='" + date + '\'' +
-                ", id='" + id + '\'' +
-                ", nominal='" + nominal + '\'' +
-                ", value='" + value + '\'' +
-                '}';
-    }
 }

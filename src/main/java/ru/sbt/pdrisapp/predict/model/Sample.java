@@ -22,11 +22,4 @@ public class Sample {
         this.currency = currency;
     }
 
-    @Override
-    public String toString() {
-        return "Sample{" +
-                "temp=" + temp +
-                ", currency=" + currency +
-                '}';
-    }
 }

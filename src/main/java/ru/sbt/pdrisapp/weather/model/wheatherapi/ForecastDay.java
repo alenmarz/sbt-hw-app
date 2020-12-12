@@ -45,20 +45,6 @@ public class ForecastDay {
         public void setAvgtemp_c(Double avgtemp_c) {
             this.avgtemp_c = avgtemp_c;
         }
-
-        @Override
-        public String toString() {
-            return "Day{" +
-                    "avgtemp_c=" + avgtemp_c +
-                    '}';
-        }
     }
 
-    @Override
-    public String toString() {
-        return "ForecastDay{" +
-                "date=" + date +
-                ", day=" + day +
-                '}';
-    }
 }

@@ -22,10 +22,4 @@ public class Forecast {
         this.forecastDayList = forecastDayList;
     }
 
-    @Override
-    public String toString() {
-        return "Forecast{" +
-                "forecastDayList=" + forecastDayList +
-                '}';
-    }
 }

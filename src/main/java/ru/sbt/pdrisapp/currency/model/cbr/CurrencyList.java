@@ -60,14 +60,4 @@ public class CurrencyList {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "CurrencyList{" +
-                "records=" + records +
-                ", ID='" + ID + '\'' +
-                ", dateRange1='" + dateRange1 + '\'' +
-                ", dateRange2='" + dateRange2 + '\'' +
-                ", name='" + name + '\'' +
-                '}';
-    }
 }
