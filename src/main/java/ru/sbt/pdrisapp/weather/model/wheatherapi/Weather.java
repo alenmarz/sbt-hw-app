@@ -7,6 +7,12 @@ public class Weather {
 
     public Weather() {}
 
+    public Weather(Location location, Current current, Forecast forecast) {
+        this.location = location;
+        this.current = current;
+        this.forecast = forecast;
+    }
+
     public Current getCurrent() {
         return current;
     }

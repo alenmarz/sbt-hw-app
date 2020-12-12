@@ -8,6 +8,11 @@ public class ForecastDay {
 
     public ForecastDay() {}
 
+    public ForecastDay(Date date, Day day) {
+        this.date = date;
+        this.day = day;
+    }
+
     public Day getDay() {
         return day;
     }
@@ -28,6 +33,10 @@ public class ForecastDay {
         private Double avgtemp_c;
 
         public Day() {}
+
+        public Day(Double avgtemp_c) {
+            this.avgtemp_c = avgtemp_c;
+        }
 
         public Double getAvgtemp_c() {
             return avgtemp_c;

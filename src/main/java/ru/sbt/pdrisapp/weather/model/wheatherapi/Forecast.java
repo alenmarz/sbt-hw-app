@@ -10,6 +10,10 @@ public class Forecast {
 
     public Forecast() {}
 
+    public Forecast(List<ForecastDay> forecastDayList) {
+        this.forecastDayList = forecastDayList;
+    }
+
     public List<ForecastDay> getForecastDayList() {
         return forecastDayList;
     }
