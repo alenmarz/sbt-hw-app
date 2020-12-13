@@ -1,0 +1,505 @@
+{
+	"info": {
+		"_postman_id": "0166371a-e1dc-42b1-a0f6-eb5a0262f773",
+		"name": "pdris-app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get weather with no parameters",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "841e97d7-3c56-4238-a54a-326b8f1fdc6f",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"var schema = {",
+							"    \"type\": \"object\",",
+							"    \"properties\": {",
+							"        \"weather\": {",
+							"            \"type\": \"array\",",
+							"            \"items\": {",
+							"                \"type\": \"object\",",
+							"                \"properties\": {",
+							"                    \"date\": {",
+							"                        \"type\": \"number\"",
+							"                    },",
+							"                    \"city\": {",
+							"                        \"type\": \"string\"",
+							"                    },",
+							"                    \"temp\": {",
+							"                        \"type\": \"number\"",
+							"                    }",
+							"                }",
+							"            }",
+							"        }",
+							"    }",
+							"};",
+							"",
+							"pm.test(\"Validate schema\", () => {",
+							"    pm.response.to.have.jsonSchema(schema);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{app_address}}/weather",
+					"host": [
+						"{{app_address}}"
+					],
+					"path": [
+						"weather"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get weather with city parameter",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "cc7e6f1c-51e9-42d9-86e9-48a62c2f69f8",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "042e9745-e07c-4fb3-9654-3975a926c61d",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"var schema = {",
+							"    \"type\": \"object\",",
+							"    \"properties\": {",
+							"        \"weather\": {",
+							"            \"type\": \"array\",",
+							"            \"items\": {",
+							"                \"type\": \"object\",",
+							"                \"properties\": {",
+							"                    \"date\": {",
+							"                        \"type\": \"number\"",
+							"                    },",
+							"                    \"city\": {",
+							"                        \"type\": \"string\"",
+							"                    },",
+							"                    \"temp\": {",
+							"                        \"type\": \"number\"",
+							"                    }",
+							"                }",
+							"            }",
+							"        }",
+							"    }",
+							"};",
+							"",
+							"pm.test(\"Validate schema\", () => {",
+							"    pm.response.to.have.jsonSchema(schema);",
+							"});",
+							"",
+							"pm.test(\"Body contains specified city name\", function () {",
+							"    pm.expect(pm.response.text()).to.include(pm.environment.get(\"city\"));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{app_address}}/weather?city={{city}}",
+					"host": [
+						"{{app_address}}"
+					],
+					"path": [
+						"weather"
+					],
+					"query": [
+						{
+							"key": "city",
+							"value": "{{city}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get weather for last two days",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7c70cce4-3dbe-401f-9e84-f88048a8a5d2",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"var schema = {",
+							"    \"type\": \"object\",",
+							"    \"properties\": {",
+							"        \"weather\": {",
+							"            \"type\": \"array\",",
+							"            \"items\": {",
+							"                \"type\": \"object\",",
+							"                \"properties\": {",
+							"                    \"date\": {",
+							"                        \"type\": \"number\"",
+							"                    },",
+							"                    \"city\": {",
+							"                        \"type\": \"string\"",
+							"                    },",
+							"                    \"temp\": {",
+							"                        \"type\": \"number\"",
+							"                    }",
+							"                }",
+							"            }",
+							"        }",
+							"    }",
+							"};",
+							"",
+							"pm.test(\"Validate schema\", () => {",
+							"    pm.response.to.have.jsonSchema(schema);",
+							"});",
+							"",
+							"pm.test(\"Array length is equal to 2\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.weather.length).to.eql(2);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a98a5678-1af1-47da-9d8f-23717609e1d4",
+						"exec": [
+							"const moment = require('moment');",
+							"pm.environment.set(\"today\", moment().format(\"YYYY-MM-DD\"));",
+							"pm.environment.set(\"yesterday\", moment().subtract(1, 'days').format(\"YYYY-MM-DD\"));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{app_address}}/weather?start_date={{yesterday}}&end_date={{today}}",
+					"host": [
+						"{{app_address}}"
+					],
+					"path": [
+						"weather"
+					],
+					"query": [
+						{
+							"key": "start_date",
+							"value": "{{yesterday}}"
+						},
+						{
+							"key": "end_date",
+							"value": "{{today}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get weather with both city and date parameters",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "14a1abaa-30bc-4446-a6a2-ebbe2828f717",
+						"exec": [
+							"const moment = require('moment');",
+							"pm.environment.set(\"today\", moment().format(\"YYYY-MM-DD\"));",
+							"pm.environment.set(\"yesterday\", moment().subtract(1, 'days').format(\"YYYY-MM-DD\"));"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "926054f0-d9df-4fd4-abb1-12887e525bdb",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"var schema = {",
+							"    \"type\": \"object\",",
+							"    \"properties\": {",
+							"        \"weather\": {",
+							"            \"type\": \"array\",",
+							"            \"items\": {",
+							"                \"type\": \"object\",",
+							"                \"properties\": {",
+							"                    \"date\": {",
+							"                        \"type\": \"number\"",
+							"                    },",
+							"                    \"city\": {",
+							"                        \"type\": \"string\"",
+							"                    },",
+							"                    \"temp\": {",
+							"                        \"type\": \"number\"",
+							"                    }",
+							"                }",
+							"            }",
+							"        }",
+							"    }",
+							"};",
+							"",
+							"pm.test(\"Validate schema\", () => {",
+							"    pm.response.to.have.jsonSchema(schema);",
+							"});",
+							"",
+							"pm.test(\"Array length is equal to 2\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.weather.length).to.eql(2);",
+							"});",
+							"",
+							"pm.test(\"Body contains specified city name\", function () {",
+							"    pm.expect(pm.response.text()).to.include(pm.environment.get(\"city\"));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{app_address}}/weather?city={{city}}&start_date={{yesterday}}&end_date={{today}}",
+					"host": [
+						"{{app_address}}"
+					],
+					"path": [
+						"weather"
+					],
+					"query": [
+						{
+							"key": "city",
+							"value": "{{city}}"
+						},
+						{
+							"key": "start_date",
+							"value": "{{yesterday}}"
+						},
+						{
+							"key": "end_date",
+							"value": "{{today}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get currency with no parameters",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8e14ad3f-9a17-44a0-b82b-9b42ebf5f309",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"var schema = {",
+							"    \"type\": \"object\",",
+							"    \"properties\": {",
+							"        \"weather\": {",
+							"            \"type\": \"array\",",
+							"            \"items\": {",
+							"                \"type\": \"object\",",
+							"                \"properties\": {",
+							"                    \"date\": {",
+							"                        \"type\": \"number\"",
+							"                    },",
+							"                    \"code\": {",
+							"                        \"type\": \"string\"",
+							"                    },",
+							"                    \"value\": {",
+							"                        \"type\": \"number\"",
+							"                    }",
+							"                }",
+							"            }",
+							"        }",
+							"    }",
+							"};",
+							"",
+							"pm.test(\"Validate schema\", () => {",
+							"    pm.response.to.have.jsonSchema(schema);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{app_address}}/currency",
+					"host": [
+						"{{app_address}}"
+					],
+					"path": [
+						"currency"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get currency history from 2020-12-10 to 2020-12-12",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "80916651-7547-427c-a20a-0bda54037b86",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"var schema = {",
+							"    \"type\": \"object\",",
+							"    \"properties\": {",
+							"        \"weather\": {",
+							"            \"type\": \"array\",",
+							"            \"items\": {",
+							"                \"type\": \"object\",",
+							"                \"properties\": {",
+							"                    \"date\": {",
+							"                        \"type\": \"number\"",
+							"                    },",
+							"                    \"code\": {",
+							"                        \"type\": \"string\"",
+							"                    },",
+							"                    \"value\": {",
+							"                        \"type\": \"number\"",
+							"                    }",
+							"                }",
+							"            }",
+							"        }",
+							"    }",
+							"};",
+							"",
+							"pm.test(\"Validate schema\", () => {",
+							"    pm.response.to.have.jsonSchema(schema);",
+							"});",
+							"",
+							"pm.test(\"Array length is equal to 3\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.currency.length).to.eql(3);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{app_address}}/currency?start_date=2020-12-10&end_date=2020-12-12",
+					"host": [
+						"{{app_address}}"
+					],
+					"path": [
+						"currency"
+					],
+					"query": [
+						{
+							"key": "start_date",
+							"value": "2020-12-10"
+						},
+						{
+							"key": "end_date",
+							"value": "2020-12-12"
+						}
+					]
+				},
+				"description": "There's no bank holiday days in the interval so we can expect data for 3 days"
+			},
+			"response": []
+		},
+		{
+			"name": "Get prediction",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ebaf1bf8-515b-43f4-a3d5-6e7773a6b6a3",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"var schema = {",
+							"    \"type\": \"object\",",
+							"    \"properties\": {",
+							"        \"weather\": {",
+							"            \"type\": \"integer\"",
+							"        }",
+							"    }",
+							"};",
+							"",
+							"pm.test(\"Validate schema\", () => {",
+							"    pm.response.to.have.jsonSchema(schema);",
+							"});",
+							"",
+							"pm.test(\"Currency prediction is greater than 0\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.prediction).to.be.above(0);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{app_address}}/prediction",
+					"host": [
+						"{{app_address}}"
+					],
+					"path": [
+						"prediction"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
