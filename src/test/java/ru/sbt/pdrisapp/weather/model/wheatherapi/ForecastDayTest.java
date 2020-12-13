@@ -18,14 +18,14 @@ public class ForecastDayTest extends TestCase {
         ForecastDay forecastDay = new ForecastDay();
         ForecastDay.Day day = new ForecastDay.Day();
         forecastDay.setDay(day);
-        assertEquals(forecastDay.getDay(), day);
+        assertEquals(day, forecastDay.getDay());
     }
 
     @Test
     public void testGetDate() {
         Date date = new Date();
         ForecastDay forecastDay = new ForecastDay(date, null);
-        assertEquals(forecastDay.getDate(), date);
+        assertEquals(date, forecastDay.getDate());
     }
 
     @Test
@@ -33,6 +33,6 @@ public class ForecastDayTest extends TestCase {
         Date date = new Date();
         ForecastDay forecastDay = new ForecastDay();
         forecastDay.setDate(date);
-        assertEquals(forecastDay.getDate(), date);
+        assertEquals(date, forecastDay.getDate());
     }
 }

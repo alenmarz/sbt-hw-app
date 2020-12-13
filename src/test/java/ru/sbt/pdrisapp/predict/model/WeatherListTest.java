@@ -15,7 +15,7 @@ public class WeatherListTest {
         WeatherList weatherList = new WeatherList();
         List<WeatherEntity> weatherEntityList = new ArrayList<>();
         weatherList.setWeather(weatherEntityList);
-        assertEquals(weatherList.getWeather(), weatherEntityList);
+        assertEquals(weatherEntityList, weatherList.getWeather());
     }
 
 }

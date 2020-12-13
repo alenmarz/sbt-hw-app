@@ -21,7 +21,7 @@ public class WeatherClientTest extends TestCase {
         WeatherClient weatherClient = new WeatherClient(new WeatherCache(weatherRepository));
         try {
             List<WeatherEntity> weatherEntities = weatherClient.getWeather(null, null, null);
-            assertEquals(weatherEntities.size(), 1);
+            assertEquals(1, weatherEntities.size());
         } catch (ParseException e) {
             fail(e.getMessage());
         }

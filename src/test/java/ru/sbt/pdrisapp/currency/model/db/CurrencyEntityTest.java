@@ -11,14 +11,14 @@ public class CurrencyEntityTest {
     @Test
     public void getCode() {
         CurrencyEntity currencyEntity = new CurrencyEntity(60.0, new Date());
-        assertEquals(currencyEntity.getCode(), "R01235");
+        assertEquals("R01235", currencyEntity.getCode());
     }
 
     @Test
     public void setCode() {
         CurrencyEntity currencyEntity = new CurrencyEntity();
         currencyEntity.setCode("code");
-        assertEquals(currencyEntity.getCode(), "code");
+        assertEquals("code", currencyEntity.getCode());
     }
 
     @Test
@@ -38,7 +38,7 @@ public class CurrencyEntityTest {
     public void getDate() {
         Date date = new Date();
         CurrencyEntity currencyEntity = new CurrencyEntity(60.0, date);
-        assertEquals(currencyEntity.getDate(), date);
+        assertEquals(date, currencyEntity.getDate());
     }
 
     @Test
@@ -46,6 +46,6 @@ public class CurrencyEntityTest {
         Date date = new Date();
         CurrencyEntity currencyEntity = new CurrencyEntity();
         currencyEntity.setDate(date);
-        assertEquals(currencyEntity.getDate(), date);
+        assertEquals(date, currencyEntity.getDate());
     }
 }

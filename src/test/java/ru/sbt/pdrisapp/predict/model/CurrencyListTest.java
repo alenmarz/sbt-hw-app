@@ -15,6 +15,6 @@ public class CurrencyListTest {
         List<CurrencyEntity> currencyEntities = new ArrayList<>();
         CurrencyList currencyList = new CurrencyList();
         currencyList.setCurrency(currencyEntities);
-        assertEquals(currencyList.getCurrency(), currencyEntities);
+        assertEquals(currencyEntities, currencyList.getCurrency());
     }
 }

@@ -22,11 +22,11 @@ public class WeatherAdapterTest extends TestCase {
         Weather weather = new Weather(location, current, forecast);
 
         List<WeatherEntity> weatherEntities = WeatherAdapter.getWeatherEntities(weather);
-        assertEquals(weatherEntities.size(), 1);
+        assertEquals(1, weatherEntities.size());
 
         WeatherEntity weatherEntity = weatherEntities.get(0);
-        assertEquals(weatherEntity.getCity(), "Dublin");
-        assertEquals(weatherEntity.getTemp(), 12.0);
-        assertEquals(weatherEntity.getDate(), date);
+        assertEquals("Dublin", weatherEntity.getCity());
+        assertEquals(12.0, weatherEntity.getTemp());
+        assertEquals(date, weatherEntity.getDate());
     }
 }

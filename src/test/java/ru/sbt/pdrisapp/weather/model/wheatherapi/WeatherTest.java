@@ -9,7 +9,7 @@ public class WeatherTest extends TestCase {
     public void testGetCurrent() {
         Current current = new Current();
         Weather weather = new Weather(null, current, null);
-        assertEquals(weather.getCurrent(), current);
+        assertEquals(current, weather.getCurrent());
     }
 
     @Test
@@ -17,14 +17,14 @@ public class WeatherTest extends TestCase {
         Current current = new Current();
         Weather weather = new Weather();
         weather.setCurrent(current);
-        assertEquals(weather.getCurrent(), current);
+        assertEquals(current, weather.getCurrent());
     }
 
     @Test
     public void testGetForecast() {
         Forecast forecast = new Forecast();
         Weather weather = new Weather(null, null, forecast);
-        assertEquals(weather.getForecast(), forecast);
+        assertEquals(forecast, weather.getForecast());
     }
 
     @Test
@@ -32,14 +32,14 @@ public class WeatherTest extends TestCase {
         Forecast forecast = new Forecast();
         Weather weather = new Weather();
         weather.setForecast(forecast);
-        assertEquals(weather.getForecast(), forecast);
+        assertEquals(forecast, weather.getForecast());
     }
 
     @Test
     public void testGetLocation() {
         Location location = new Location();
         Weather weather = new Weather(location, null, null);
-        assertEquals(weather.getLocation(), location);
+        assertEquals(location, weather.getLocation());
     }
 
     @Test
@@ -47,6 +47,6 @@ public class WeatherTest extends TestCase {
         Location location = new Location();
         Weather weather = new Weather();
         weather.setLocation(location);
-        assertEquals(weather.getLocation(), location);
+        assertEquals(location, weather.getLocation());
     }
 }

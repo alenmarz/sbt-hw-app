@@ -1,6 +1,6 @@
 **Weather API**
 
-| Parameter     |               | Description  |
+| Parameter     |          | Description  |
 | ----------- |----------- | ----- |
 | `city`       | Default city is Moscow. | City name e.g.: Dublin|
 | `start_date` | Not required (and, actually, substituted with today) in case if `end_date` absents.      | Date in yyyy-MM-dd format. No earlier than 7 days before `end_date` and today.|

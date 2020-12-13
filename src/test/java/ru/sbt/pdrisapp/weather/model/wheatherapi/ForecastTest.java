@@ -22,6 +22,6 @@ public class ForecastTest extends TestCase {
         forecastDays.add(forecastDay);
         Forecast forecast = new Forecast();
         forecast.setForecastDayList(forecastDays);
-        assertEquals(forecast.getForecastDayList(), forecastDays);
+        assertEquals(forecastDays, forecast.getForecastDayList());
     }
 }

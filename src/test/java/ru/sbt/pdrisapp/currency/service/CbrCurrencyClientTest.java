@@ -23,7 +23,7 @@ public class CbrCurrencyClientTest {
         try {
             String date = "2020-12-12";
             List<CurrencyEntity> currencyEntityList = cbrCurrencyClient.getCurrency(null, date, date);
-            assertEquals(currencyEntityList.size(), 1);
+            assertEquals(1, currencyEntityList.size());
         } catch (ParseException e) {
             fail(e.getMessage());
         }
