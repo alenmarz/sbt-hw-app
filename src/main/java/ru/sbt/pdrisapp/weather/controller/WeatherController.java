@@ -5,7 +5,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.sbt.pdrisapp.weather.model.db.WeatherEntity;
-import ru.sbt.pdrisapp.weather.model.wheatherapi.Weather;
 import ru.sbt.pdrisapp.weather.service.WeatherClient;
 
 import javax.transaction.Transactional;

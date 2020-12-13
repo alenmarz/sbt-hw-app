@@ -4,8 +4,6 @@ public class Sample {
     private double temp;
     private double currency;
 
-    public Sample() {}
-
     public double getTemp() {
         return temp;
     }

@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import ru.sbt.pdrisapp.weather.model.db.WeatherEntity;
 import ru.sbt.pdrisapp.weather.repository.WeatherRepository;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -27,7 +28,7 @@ public class WeatherCache {
 
         weatherRepository.deleteWeatherEntitiesByCityAndDateBetween(city, startDate, endDate);
 
-        return null;
+        return new ArrayList<>();
     }
 
     void saveWeatherEntities(List<WeatherEntity> weatherEntities) {

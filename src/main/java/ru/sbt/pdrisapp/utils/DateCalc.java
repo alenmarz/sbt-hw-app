@@ -4,6 +4,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class DateCalc {
+    private DateCalc() {}
+
     public static Date getDate(Date baseDate, int diff) {
         Calendar c = Calendar.getInstance();
         c.setTime(baseDate);

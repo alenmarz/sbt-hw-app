@@ -8,10 +8,12 @@ import ru.sbt.pdrisapp.utils.UriBuilder;
 
 @Service
 public class WeatherApiClient {
-    private static final String ApiUrl = "http://localhost:8080/weather";
+    private WeatherApiClient() {}
+
+    private static final String API_URL = "http://localhost:8080/weather";
 
     public static WeatherList getWeather(String startDate, String endDate) {
-        UriBuilder uri = new UriBuilder(ApiUrl)
+        UriBuilder uri = new UriBuilder(API_URL)
                 .queryParam("city", "Moscow")
                 .queryParam("start_date", startDate)
                 .queryParam("end_date", endDate);

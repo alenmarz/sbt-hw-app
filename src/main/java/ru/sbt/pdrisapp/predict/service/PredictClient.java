@@ -12,7 +12,7 @@ import java.util.*;
 
 @Service
 public class PredictClient {
-    private static final int DaysNumber = 7;
+    private static final int DAYS_NUMBER = 7;
     private final SimpleDateFormat defaultFormatter = new SimpleDateFormat("yyyy-MM-dd");
     private final Predictor predictor = new Predictor();
 
@@ -21,7 +21,7 @@ public class PredictClient {
 
         Date today = DateCalc.getDate();
         Date tomorrow = DateCalc.getDate(today, 1);
-        Date startDate = DateCalc.getDate(today, -1 * DaysNumber);
+        Date startDate = DateCalc.getDate(today, -1 * DAYS_NUMBER);
 
         CurrencyList currencyList = CurrencyApiClient.getCurrency(
                 defaultFormatter.format(startDate),

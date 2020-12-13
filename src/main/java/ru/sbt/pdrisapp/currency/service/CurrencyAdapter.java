@@ -11,6 +11,8 @@ import java.util.Date;
 import java.util.List;
 
 public class CurrencyAdapter {
+    private CurrencyAdapter() {}
+
     public static List<CurrencyEntity> getCurrencyEntities(CurrencyList currencyList)
         throws ParseException {
         List<CurrencyEntity> currencyEntities = new ArrayList<>();

@@ -19,8 +19,8 @@ import java.util.List;
 
 @Service
 public class CbrCurrencyClient {
-    private static final String ApiUrl = "http://www.cbr.ru/scripts/XML_dynamic.asp";
-    private static final String DefaultCurrencyCode = "R01235";
+    private static final String API_URL = "http://www.cbr.ru/scripts/XML_dynamic.asp";
+    private static final String DEFAULT_CURRENCY_CODE = "R01235";
     private final SimpleDateFormat defaultFormatter = new SimpleDateFormat("yyyy-MM-dd");
     private final SimpleDateFormat cbrFormatter = new SimpleDateFormat("dd.MM.yyyy");
 
@@ -38,18 +38,18 @@ public class CbrCurrencyClient {
         }
 
         if (code == null || code.isEmpty()) {
-            code = DefaultCurrencyCode;
+            code = DEFAULT_CURRENCY_CODE;
         }
 
         Date startDate = defaultFormatter.parse(startDateString);
         Date endDate = defaultFormatter.parse(endDateString);
 
         List<CurrencyEntity> currencyEntities = currencyCache.getCachedCurrencyEntities(code, startDate, endDate);
-        if (currencyEntities != null) {
+        if (!currencyEntities.isEmpty()) {
             return currencyEntities;
         }
 
-        UriBuilder uri = new UriBuilder(ApiUrl)
+        UriBuilder uri = new UriBuilder(API_URL)
                 .queryParam("VAL_NM_RQ", code)
                 .queryParam("date_req1", cbrFormatter.format(startDate))
                 .queryParam("date_req2", cbrFormatter.format(endDate));

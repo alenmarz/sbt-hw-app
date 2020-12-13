@@ -21,7 +21,7 @@ public class WeatherCacheTest extends TestCase {
     public void testGetCachedWeatherEntities() {
         WeatherCache weatherCache = new WeatherCache(weatherRepository);
         Date date = new Date();
-        assertNull(weatherCache.getCachedWeatherEntities("Dublin", date, date));
+        assertTrue(weatherCache.getCachedWeatherEntities("Dublin", date, date).isEmpty());
     }
 
     @Test

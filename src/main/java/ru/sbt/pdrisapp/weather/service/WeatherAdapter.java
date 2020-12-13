@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WeatherAdapter {
+    private WeatherAdapter() {}
+
     public static List<WeatherEntity> getWeatherEntities(Weather weather) {
         List<WeatherEntity> weatherEntities = new ArrayList<>();
 

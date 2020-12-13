@@ -22,7 +22,7 @@ public class CurrencyCacheTest {
     public void getCachedCurrencyEntities() {
         CurrencyCache currencyCache = new CurrencyCache(currencyRepository);
         Date date = new Date();
-        assertNull(currencyCache.getCachedCurrencyEntities("code", date, date));
+        assertTrue(currencyCache.getCachedCurrencyEntities("code", date, date).isEmpty());
     }
 
     @Test

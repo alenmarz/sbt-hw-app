@@ -7,8 +7,6 @@ import java.util.List;
 public class WeatherList {
     private List<WeatherEntity> weather;
 
-    public WeatherList() {}
-
     public List<WeatherEntity> getWeather() {
         return weather;
     }

@@ -23,4 +23,12 @@ public class WeatherControllerTest {
         mockMvc.perform(get("/weather"))
                 .andExpect(status().isOk());
     }
+
+    @Test
+    public void getWeatherWithParseError() throws Exception {
+        mockMvc.perform(get("/weather")
+                .param("start_date", "test")
+                .param("end_date", "test"))
+                .andExpect(status().isOk());
+    }
 }

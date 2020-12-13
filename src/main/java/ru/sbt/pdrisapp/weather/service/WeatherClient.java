@@ -14,9 +14,9 @@ import java.util.List;
 
 @Service
 public class WeatherClient {
-    private static final String ApiUrl = "http://api.weatherapi.com/v1/history.json";
-    private static final String ApiKey = "4fb94601eaa2453f890205113200412";
-    private static final String DefaultCity = "Moscow";
+    private static final String API_URL = "http://api.weatherapi.com/v1/history.json";
+    private static final String API_KEY = "4fb94601eaa2453f890205113200412";
+    private static final String DEFAULT_CITY = "Moscow";
     private final SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
     private final WeatherCache weatherCache;
@@ -33,19 +33,19 @@ public class WeatherClient {
         }
 
         if (city == null || city.isEmpty()) {
-            city = DefaultCity;
+            city = DEFAULT_CITY;
         }
 
         Date startDate = formatter.parse(startDateString);
         Date endDate = formatter.parse(endDateString);
 
         List<WeatherEntity> weatherEntities = weatherCache.getCachedWeatherEntities(city, startDate, endDate);
-        if (weatherEntities != null) {
+        if (!weatherEntities.isEmpty()) {
             return weatherEntities;
         }
 
-        UriBuilder uri = new UriBuilder(ApiUrl)
-                .queryParam("key", ApiKey)
+        UriBuilder uri = new UriBuilder(API_URL)
+                .queryParam("key", API_KEY)
                 .queryParam("q", city)
                 .queryParam("dt", startDateString)
                 .queryParam("end_dt", endDateString);

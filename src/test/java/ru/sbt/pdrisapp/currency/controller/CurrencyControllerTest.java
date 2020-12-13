@@ -23,4 +23,12 @@ public class CurrencyControllerTest {
         mockMvc.perform(get("/currency"))
                 .andExpect(status().isOk());
     }
+
+    @Test
+    public void getCurrencyWithParseError() throws Exception {
+        mockMvc.perform(get("/currency")
+                .param("start_date", "test")
+                .param("end_date", "test"))
+                .andExpect(status().isOk());
+    }
 }

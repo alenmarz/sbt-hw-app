@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import ru.sbt.pdrisapp.currency.model.db.CurrencyEntity;
 import ru.sbt.pdrisapp.currency.repository.CurrencyRepository;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -28,7 +29,7 @@ public class CurrencyCache {
 
         currencyRepository.deleteCurrencyEntitiesByCodeAndDateBetween(code, startDate, endDate);
 
-        return null;
+        return new ArrayList<>();
     }
 
     void saveCurrencyEntities(List<CurrencyEntity> currencyEntities) {

@@ -8,10 +8,12 @@ import ru.sbt.pdrisapp.utils.UriBuilder;
 
 @Service
 public class CurrencyApiClient {
-    private static final String ApiUrl = "http://localhost:8080/currency";
+    private CurrencyApiClient() {}
+
+    private static final String API_URL = "http://localhost:8080/currency";
 
     public static CurrencyList getCurrency(String startDate, String endDate) {
-        UriBuilder uri = new UriBuilder(ApiUrl)
+        UriBuilder uri = new UriBuilder(API_URL)
                 .queryParam("start_date", startDate)
                 .queryParam("end_date", endDate);
 

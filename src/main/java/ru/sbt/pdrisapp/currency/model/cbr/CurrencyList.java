@@ -17,9 +17,6 @@ public class CurrencyList {
     private String dateRange2;
     private String name;
 
-    public CurrencyList() {
-    }
-
     public List<Record> getRecords() {
         return records;
     }
