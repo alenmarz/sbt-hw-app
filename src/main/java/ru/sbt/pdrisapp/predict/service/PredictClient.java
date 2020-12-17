@@ -23,7 +23,8 @@ public class PredictClient {
         Date tomorrow = DateCalc.getDate(today, 1);
         Date startDate = DateCalc.getDate(today, -1 * DAYS_NUMBER);
 
-        CurrencyList currencyList = CurrencyApiClient.getCurrency(
+        CurrencyApiClient currencyApiClient = new CurrencyApiClient();
+        CurrencyList currencyList = currencyApiClient.getCurrency(
                 defaultFormatter.format(startDate),
                 defaultFormatter.format(today)
         );
@@ -34,7 +35,8 @@ public class PredictClient {
             samplesMap.put(currencyEntity.getDate(), sample);
         });
 
-        WeatherList weatherList = WeatherApiClient.getWeather(
+        WeatherApiClient weatherApiClient = new WeatherApiClient();
+        WeatherList weatherList = weatherApiClient.getWeather(
                 defaultFormatter.format(startDate),
                 defaultFormatter.format(tomorrow)
         );

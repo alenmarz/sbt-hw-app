@@ -1,5 +1,6 @@
 package ru.sbt.pdrisapp.predict.service;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -8,12 +9,12 @@ import ru.sbt.pdrisapp.utils.UriBuilder;
 
 @Service
 public class WeatherApiClient {
-    private WeatherApiClient() {}
+    @Value("${weather.url}")
+    private String apiUrl;
 
-    private static final String API_URL = "http://localhost:8080/weather";
+    public WeatherList getWeather(String startDate, String endDate) {
 
-    public static WeatherList getWeather(String startDate, String endDate) {
-        UriBuilder uri = new UriBuilder(API_URL)
+        UriBuilder uri = new UriBuilder(apiUrl)
                 .queryParam("city", "Moscow")
                 .queryParam("start_date", startDate)
                 .queryParam("end_date", endDate);
