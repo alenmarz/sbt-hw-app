@@ -1,0 +1,6 @@
+server:
+  port: 8090
+weather:
+  url: http://localhost:8088/weather
+currency:
+  url: http://localhost:8089/currency
