@@ -1,6 +1,8 @@
 package ru.sbt.predict.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 import ru.sbt.predict.model.CurrencyList;
 import ru.sbt.predict.model.Sample;
 import ru.sbt.predict.model.WeatherList;
@@ -16,6 +18,13 @@ public class PredictClient {
     private final SimpleDateFormat defaultFormatter = new SimpleDateFormat("yyyy-MM-dd");
     private final Predictor predictor = new Predictor();
 
+    private RestTemplate restTemplate;
+
+    @Autowired
+    PredictClient(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
+
     public double getPrediction() {
         Map<Date, Sample> samplesMap = new HashMap<>();
 
@@ -23,7 +32,7 @@ public class PredictClient {
         Date tomorrow = DateCalc.getDate(today, 1);
         Date startDate = DateCalc.getDate(today, -1 * DAYS_NUMBER);
 
-        CurrencyApiClient currencyApiClient = new CurrencyApiClient();
+        CurrencyApiClient currencyApiClient = new CurrencyApiClient(restTemplate);
         CurrencyList currencyList = currencyApiClient.getCurrency(
                 defaultFormatter.format(startDate),
                 defaultFormatter.format(today)
@@ -35,7 +44,7 @@ public class PredictClient {
             samplesMap.put(currencyEntity.getDate(), sample);
         });
 
-        WeatherApiClient weatherApiClient = new WeatherApiClient();
+        WeatherApiClient weatherApiClient = new WeatherApiClient(restTemplate);
         WeatherList weatherList = weatherApiClient.getWeather(
                 defaultFormatter.format(startDate),
                 defaultFormatter.format(tomorrow)

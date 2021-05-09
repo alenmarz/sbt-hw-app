@@ -1,5 +1,6 @@
 package ru.sbt.predict.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -9,7 +10,13 @@ import ru.sbt.utils.UriBuilder;
 
 @Service
 public class WeatherApiClient {
-    private final String apiUrl = "http://localhost:8088/weather";
+    private final String apiUrl = "http://weather-service/weather";
+
+    private RestTemplate restTemplate;
+
+    WeatherApiClient(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 
     public WeatherList getWeather(String startDate, String endDate) {
 
@@ -20,7 +27,6 @@ public class WeatherApiClient {
 
         System.out.println(uri.toUriString());
 
-        RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<WeatherList> responseEntity = restTemplate.getForEntity(
                 uri.toUriString(),
                 WeatherList.class

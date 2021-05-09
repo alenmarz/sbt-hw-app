@@ -21,7 +21,14 @@ import java.net.UnknownHostException;
 
 @Service
 public class CurrencyApiClient {
-    private final String apiUrl = "http://localhost:8089/currency";
+    private final String apiUrl = "http://currency-service/currency";
+
+    private RestTemplate restTemplate;
+
+    @Autowired
+    CurrencyApiClient(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 
     public CurrencyList getCurrency(String startDate, String endDate) {
         
@@ -31,7 +38,6 @@ public class CurrencyApiClient {
 
         System.out.println(uri.toUriString());
 
-        RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<CurrencyList> responseEntity = restTemplate.getForEntity(
                 uri.toUriString(),
                 CurrencyList.class
