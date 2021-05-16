@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: currencyservice
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: currencyservice
+  template:
+    metadata:
+      name: currencyservice
+      labels:
+        app: currencyservice
+    spec:
+      containers:
+        - name: currencyservice
+          image: alenmarz/currencyservice
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8089
