@@ -4,7 +4,7 @@ metadata:
   name: eurekaservice
   namespace: default
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: eurekaservice
@@ -26,7 +26,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: eureka
+  name: discovery-server
 spec:
   ports:
     - port: 8761

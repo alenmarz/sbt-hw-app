@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: weatherservice
+  name: weather
   namespace: default
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: weatherservice
+      app: weather
   template:
     metadata:
-      name: weatherservice
+      name: weather
       labels:
-        app: weatherservice
+        app: weather
     spec:
       containers:
-        - name: weatherservice
+        - name: weather
           image: alenmarz/weatherservice
           imagePullPolicy: IfNotPresent
           ports:
@@ -25,11 +25,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: weather
+  name: weather-service
 spec:
   ports:
     - port: 8088
       targetPort: 8088
   selector:
-    app: weatherservice
+    app: weather
   type: ClusterIP

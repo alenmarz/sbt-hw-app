@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: currencyservice
+  name: currency
   namespace: default
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: currencyservice
+      app: currency
   template:
     metadata:
-      name: currencyservice
+      name: currency
       labels:
-        app: currencyservice
+        app: currency
     spec:
       containers:
-        - name: currencyservice
+        - name: currency
           image: alenmarz/currencyservice
           imagePullPolicy: IfNotPresent
           ports:
@@ -26,11 +26,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: currency
+  name: currency-service
 spec:
   ports:
     - port: 8089
       targetPort: 8089
   selector:
-    app: currencyservice
+    app: currency
   type: ClusterIP
