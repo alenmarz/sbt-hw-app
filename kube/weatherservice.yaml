@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: weatherservice
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: weatherservice
+  template:
+    metadata:
+      name: weatherservice
+      labels:
+        app: weatherservice
+    spec:
+      containers:
+        - name: weatherservice
+          image: alenmarz/weatherservice
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8088
